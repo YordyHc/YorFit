@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/YorFit.Api/YorFit.Api.csproj" />
+    <Project Path="src/YorFit.Application/YorFit.Application.csproj" />
+    <Project Path="src/YorFit.Domain/YorFit.Domain.csproj" />
+    <Project Path="src/YorFit.Infrastructure/YorFit.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/YorFit.Tests/YorFit.Tests.csproj" />
+  </Folder>
+</Solution>

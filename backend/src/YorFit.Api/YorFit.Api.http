@@ -1,0 +1,6 @@
+@YorFit.Api_HostAddress = http://localhost:5215
+
+GET {{YorFit.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

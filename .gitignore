@@ -1,0 +1,43 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Tt]est[Rr]esults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+NuGet.Config.user
+
+# Frontend dependencies and generated output
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+.output/
+coverage/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets.json
+secrets.*.json
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
