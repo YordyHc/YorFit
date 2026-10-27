@@ -4,4 +4,7 @@ using System.Text;
 
 namespace YorFit.Api.DTOs;
 
-public record AjusteInventarioDTO(int Delta);
+public class ChangeBranchStatusDTO
+{
+    public bool? Activo { get; set; }
+}

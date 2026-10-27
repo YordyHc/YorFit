@@ -1,4 +1,5 @@
 @YorFit.Api_HostAddress = http://localhost:5215
+@branchId = 01a17c7f-3c35-7dae-bd25-28162b033cf6
 
 ### Crear sede
 POST {{YorFit.Api_HostAddress}}/api/sedes
@@ -16,4 +17,40 @@ Accept: application/json
   "pais": "Perú",
   "codigoPais": "+51",
   "numeroNacional": "987654321"
+}
+
+### Actualizar datos de la sede
+PUT {{YorFit.Api_HostAddress}}/api/sedes/{{branchId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Sede Centro Actualizada",
+  "codigo": "CENTRO",
+  "lineaDireccion1": "Av. Principal 456",
+  "lineaDireccion2": "AA.HH Los Jardines",
+  "distrito": "Centro",
+  "provincia": "Lima",
+  "referencia": "Frente al parque",
+  "pais": "Perú",
+  "codigoPais": "+51",
+  "numeroNacional": "987654321"
+}
+
+### Activar la sede
+PATCH {{YorFit.Api_HostAddress}}/api/sedes/{{branchId}}/estado
+Content-Type: application/json
+Accept: application/json
+
+{
+  "activo": true
+}
+
+### Desactivar la sede
+PATCH {{YorFit.Api_HostAddress}}/api/sedes/{{branchId}}/estado
+Content-Type: application/json
+Accept: application/json
+
+{
+  "activo": false
 }

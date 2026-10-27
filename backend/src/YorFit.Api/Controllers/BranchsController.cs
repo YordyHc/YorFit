@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using YorFit.Api.DTOs;
-// using YorFit.Application.UseCases.Branchs.Commands.ActualizarProducto;
-// using YorFit.Application.UseCases.Branchs.Commands.AjusteInventario;
+using YorFit.Application.UseCases.Branchs.Commands.UpdateBranch;
+using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.UseCases.Branchs.Queries.GetProductById;
 
@@ -52,16 +52,21 @@ public class BranchsController(IMediator mediador): ControllerBase
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
 
-    /*[HttpPut("{id}")]
-    public async Task<ActionResult> Update(Guid id, [FromBody] ActualizarProductoDTO modelo)
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Update(Guid id, [FromBody] UpdateBranchDTO modelo)
     {
-        var comando = new ComandoActualizarProducto(
+        var comando = new UpdateBranchCommand(
             Id: id,
             Nombre: modelo.Nombre,
-            Descripcion: modelo.Descripcion,
-            Precio: modelo.Precio,
-            Moneda: modelo.Moneda,
-            Activo: modelo.Activo
+            Codigo: modelo.Codigo,
+            LineaDireccion1: modelo.LineaDireccion1,
+            LineaDireccion2: modelo.LineaDireccion2,
+            Distrito: modelo.Distrito,
+            Provincia: modelo.Provincia,
+            Referencia: modelo.Referencia,
+            Pais: modelo.Pais,
+            CodigoPais: modelo.CodigoPais,
+            NumeroNacional: modelo.NumeroNacional
         );
 
         await mediador.Send(comando);
@@ -69,16 +74,16 @@ public class BranchsController(IMediator mediador): ControllerBase
         return NoContent();
     }
 
-    [HttpPost("{id}/inventario")]
-    public async Task<ActionResult> AjusteInventario(Guid id, [FromBody] AjusteInventarioDTO modelo)
+    [HttpPatch("{id}/estado")]
+    public async Task<ActionResult> CambiarEstado(Guid id, [FromBody] ChangeBranchStatusDTO? modelo)
     {
-        var comando = new ComandoAjusteInventario(
-            IdProducto: id,
-            Delta: modelo.Delta
-        );
+        if (modelo?.Activo is not bool activo)
+        {
+            return BadRequest("El campo Activo es requerido.");
+        }
 
-        await mediador.Send(comando);
+        await mediador.Send(new ChangeBranchStatusCommand(id, activo));
 
         return NoContent();
-    }*/
+    }
 }

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
-// using YorFit.Application.UseCases.Branchs.Commands.ActualizarProducto;
-// using YorFit.Application.UseCases.Branchs.Commands.AjusteInventario;
+using YorFit.Application.UseCases.Branchs.Commands.UpdateBranch;
+using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.Utilities.Mediator;
 // using YorFit.Application.UseCases.Branchs.Queries.FiltrarProductos;
 // using YorFit.Application.UseCases.Branchs.Queries.ObtenerProductoPorId;
-// using YorFit.Application.Utilidades.Mediador;
+//using YorFit.Application.Utilities.Mediator;
 
 namespace YorFit.Application;
 
@@ -20,9 +20,9 @@ public static class DependencyInjection
 
         services.AddScoped<IRequestHandler<CreateBranchCommand, Guid>, CreateBranchUseCase>();
 
-        // services.AddScoped<IRequestHandler<ComandoActualizarProducto>, CasoDeUsoActualizarProducto>();
+        services.AddScoped<IRequestHandler<UpdateBranchCommand>, UpdateBranchUseCase>();
 
-        // services.AddScoped<IRequestHandler<ComandoAjusteInventario>, CasoDeUsoAjusteInventario>();
+        services.AddScoped<IRequestHandler<ChangeBranchStatusCommand>, ChangeBranchStatusUseCase>();
         
         // services.AddScoped<IRequestHandler<ConsultaObtenerProductoPorId, ProductoDetalleDTO>, CasoDeUsoObtenerProductoPorId>();
 
