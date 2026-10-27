@@ -9,7 +9,6 @@ public interface IBranchRepository
 {
     Task Agregar(Branch sede);
     Task<bool> Existe(string nombre);
-
     Task<bool> ExisteCodigo(string codigo);
 
     Task<Branch?> ObtenerPorId(Guid id);
