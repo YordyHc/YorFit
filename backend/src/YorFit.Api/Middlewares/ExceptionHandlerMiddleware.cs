@@ -8,11 +8,11 @@ using YorFit.Domain.Exceptions;
 
 namespace YorFit.Api.Middlewares;
 
-public class ManejadorExcepcionesMiddleware
+public class ExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
 
-    public ManejadorExcepcionesMiddleware(RequestDelegate next)
+    public ExceptionHandlerMiddleware(RequestDelegate next)
     {
         _next = next;
     }
@@ -51,10 +51,10 @@ public class ManejadorExcepcionesMiddleware
     }
 }
 
-public static class ManejadorExcepcionesMiddlewareExtensions
+public static class ExceptionHandlerMiddlewareExtensions
 {
     public static IApplicationBuilder UseManejadorExcepciones(this IApplicationBuilder builder)
     {
-        return builder.UseMiddleware<ManejadorExcepcionesMiddleware>();
+        return builder.UseMiddleware<ExceptionHandlerMiddleware>();
     }
 }

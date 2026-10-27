@@ -6,7 +6,7 @@ using YorFit.Application.Utilities.Mediator;
 using YorFit.Domain.Exceptions;
 using YorFit.Domain.ValuableObjects;
 
-namespace YorFit.Application.UseCases.Branch.Commands.CreateBranch;
+namespace YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 
 public class CreateBranchUseCase(IBranchRepository repositorioSedes): IRequestHandler<CreateBranchCommand, Guid>
 {

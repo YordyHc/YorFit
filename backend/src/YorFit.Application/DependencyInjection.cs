@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
-// using YorFit.Application.UseCases.Branch.Commands.ActualizarProducto;
-// using YorFit.Application.UseCases.Branch.Commands.AjusteInventario;
-using YorFit.Application.UseCases.Branch.Commands.CreateBranch;
+// using YorFit.Application.UseCases.Branchs.Commands.ActualizarProducto;
+// using YorFit.Application.UseCases.Branchs.Commands.AjusteInventario;
+using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.Utilities.Mediator;
-// using YorFit.Application.UseCases.Branch.Inquiries.FiltrarProductos;
-// using YorFit.Application.UseCases.Branch.Inquiries.ObtenerProductoPorId;
+// using YorFit.Application.UseCases.Branchs.Queries.FiltrarProductos;
+// using YorFit.Application.UseCases.Branchs.Queries.ObtenerProductoPorId;
 // using YorFit.Application.Utilidades.Mediador;
 
 namespace YorFit.Application;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using YorFit.Application.Utilities.Mediator;
 
-namespace YorFit.Application.UseCases.Branch.Commands.CreateBranch;
+namespace YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 
 public record CreateBranchCommand
 (

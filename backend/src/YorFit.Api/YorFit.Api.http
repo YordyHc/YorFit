@@ -1,6 +1,19 @@
 @YorFit.Api_HostAddress = http://localhost:5215
 
-GET {{YorFit.Api_HostAddress}}/weatherforecast/
+### Crear sede
+POST {{YorFit.Api_HostAddress}}/api/sedes
+Content-Type: application/json
 Accept: application/json
 
-###
+{
+  "nombre": "Sede Centro",
+  "codigo": "CENTRO",
+  "lineaDireccion1": "Av. Principal 123",
+  "lineaDireccion2": null,
+  "distrito": "Centro",
+  "provincia": "Lima",
+  "referencia": "Frente al parque",
+  "pais": "Perú",
+  "codigoPais": "+51",
+  "numeroNacional": "987654321"
+}
