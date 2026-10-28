@@ -6,9 +6,8 @@ using YorFit.Application.UseCases.Branchs.Commands.UpdateBranch;
 using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.Utilities.Mediator;
-// using YorFit.Application.UseCases.Branchs.Queries.FiltrarProductos;
-// using YorFit.Application.UseCases.Branchs.Queries.ObtenerProductoPorId;
-//using YorFit.Application.Utilities.Mediator;
+using YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
+using YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
 
 namespace YorFit.Application;
 
@@ -24,9 +23,9 @@ public static class DependencyInjection
 
         services.AddScoped<IRequestHandler<ChangeBranchStatusCommand>, ChangeBranchStatusUseCase>();
         
-        // services.AddScoped<IRequestHandler<ConsultaObtenerProductoPorId, ProductoDetalleDTO>, CasoDeUsoObtenerProductoPorId>();
+        services.AddScoped<IRequestHandler<QueryGetBranchById, BranchDetailDTO>, UseCaseGetBranchById>();
 
-        // services.AddScoped<IRequestHandler<ConsultaFiltrarProductos, List<ProductoFiltradoDTO>>, CasoDeUsoFiltrarProducto>();
+        services.AddScoped<IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>, FilterProductsUseCase>();
         return services;
     }
 }

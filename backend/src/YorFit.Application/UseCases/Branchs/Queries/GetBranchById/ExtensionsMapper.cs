@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using YorFit.Domain.Entities;
 
-namespace YorFit.Application.UseCases.Branchs.Queries.GetProductById;
+namespace YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
 
 internal static class ExtensionsMapper
 {

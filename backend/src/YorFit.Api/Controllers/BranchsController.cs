@@ -6,10 +6,8 @@ using YorFit.Api.DTOs;
 using YorFit.Application.UseCases.Branchs.Commands.UpdateBranch;
 using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
-using YorFit.Application.UseCases.Branchs.Queries.GetProductById;
-
-// using YorFit.Application.UseCases.Branchs.Queries.FiltrarProductos;
-// using YorFit.Application.UseCases.Branchs.Queries.ObtenerProductoPorId;
+using YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
+using YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
 using YorFit.Application.Utilities.Mediator;
 
 namespace YorFit.Api.Controllers;
@@ -24,12 +22,12 @@ public class BranchsController(IMediator mediador): ControllerBase
         return await mediador.Send(consulta);
     }
 
-    /*[HttpGet("filtrado")]
-    public async Task<ActionResult<List<ProductoFiltradoDTO>>> GetFiltrado(string? nombre, [FromQuery] bool? activo)
+    [HttpGet("filtrado")]
+    public async Task<ActionResult<List<FilteredBranchDTO>>> GetFiltrado(string? nombre, string? codigo, [FromQuery] bool? activo)
     {
-        var consulta = new ConsultaFiltrarProductos(nombre, activo);
+        var consulta = new FilterBranchsQuery(nombre, codigo, activo);
         return await mediador.Send(consulta);
-    }*/
+    }
 
     [HttpPost]
     public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchDTO modelo)

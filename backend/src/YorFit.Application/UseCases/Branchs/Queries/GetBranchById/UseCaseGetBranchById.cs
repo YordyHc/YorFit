@@ -5,7 +5,7 @@ using YorFit.Application.Contracts;
 using YorFit.Application.Exceptions;
 using YorFit.Application.Utilities.Mediator;
 
-namespace YorFit.Application.UseCases.Branchs.Queries.GetProductById;
+namespace YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
 
 public class UseCaseGetBranchById(IBranchRepository repositorio) : IRequestHandler<QueryGetBranchById, BranchDetailDTO>
 {

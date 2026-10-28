@@ -32,21 +32,28 @@ internal class BranchRepository(ApplicationDbContext context) : IBranchRepositor
     }
 
 
-    public async Task<List<Branch>> ObtenerFiltrado(string? nombre, bool? activo)
+    public async Task<List<Branch>> ObtenerFiltrado(string? nombre, string? codigo, bool? activo)
     {
-        var queryable = context.Branchs.AsQueryable();
+        var query = context.Branchs.AsNoTracking();
 
-        if (nombre is not null)
+        if (!string.IsNullOrWhiteSpace(nombre))
         {
-            queryable = queryable.Where(x => x.Nombre.Contains(nombre));
+            var nombreFiltro = nombre.Trim();
+            query = query.Where(branch => branch.Nombre.Contains(nombreFiltro));
         }
 
-        if (activo is not null)
+        if (!string.IsNullOrWhiteSpace(codigo))
         {
-            queryable = queryable.Where(x => x.Activo == activo);
+            var codigoFiltro = codigo.Trim();
+            query = query.Where(branch => branch.Codigo.Contains(codigoFiltro));
         }
 
-        return await queryable.ToListAsync();
+        if (activo.HasValue)
+        {
+            query = query.Where(branch => branch.Activo == activo.Value);
+        }
+
+        return await query.ToListAsync();
     }
 
     public async Task<Branch?> ObtenerPorId(Guid id)

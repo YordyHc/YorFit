@@ -1,6 +1,39 @@
 @YorFit.Api_HostAddress = http://localhost:5215
 @branchId = 01a17c7f-3c35-7dae-bd25-28162b033cf6
 
+
+### Consultar una sede por ID
+GET {{YorFit.Api_HostAddress}}/api/sedes/{{branchId}}
+Accept: application/json
+
+### Listar todas las sedes
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado
+Accept: application/json
+
+### Buscar por nombre parcial
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?nombre=Centro
+Accept: application/json
+
+### Buscar por código parcial
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?codigo=CEN
+Accept: application/json
+
+### Buscar sedes activas
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?activo=true
+Accept: application/json
+
+### Buscar sedes inactivas
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?activo=false
+Accept: application/json
+
+### Combinar nombre, código y estado
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?nombre=Centro&codigo=CEN&activo=true
+Accept: application/json
+
+### Búsqueda sin coincidencias: debe devolver una lista vacía
+GET {{YorFit.Api_HostAddress}}/api/sedes/filtrado?nombre=NoExiste
+Accept: application/json
+
 ### Crear sede
 POST {{YorFit.Api_HostAddress}}/api/sedes
 Content-Type: application/json

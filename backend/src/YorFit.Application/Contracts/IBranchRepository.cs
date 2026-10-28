@@ -14,5 +14,5 @@ public interface IBranchRepository
     Task<Branch?> ObtenerPorId(Guid id);
     Task Actualizar(Branch sede);
 
-    Task<List<Branch>> ObtenerFiltrado(string? nombre, bool? activo);
+    Task<List<Branch>> ObtenerFiltrado(string? nombre, string? codigo, bool? activo);
 }
