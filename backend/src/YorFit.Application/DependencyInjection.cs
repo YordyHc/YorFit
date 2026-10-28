@@ -8,6 +8,7 @@ using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.Utilities.Mediator;
 using YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
 using YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
+using YorFit.Application.UseCases.Branchs.Commands.DeleteBranch;
 
 namespace YorFit.Application;
 
@@ -26,6 +27,9 @@ public static class DependencyInjection
         services.AddScoped<IRequestHandler<QueryGetBranchById, BranchDetailDTO>, UseCaseGetBranchById>();
 
         services.AddScoped<IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>, FilterProductsUseCase>();
+
+        services.AddScoped<IRequestHandler<DeleteBranchCommand>, DeleteBranchUseCase>();
+
         return services;
     }
 }

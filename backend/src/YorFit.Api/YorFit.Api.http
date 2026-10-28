@@ -1,5 +1,5 @@
 @YorFit.Api_HostAddress = http://localhost:5215
-@branchId = 01a17c7f-3c35-7dae-bd25-28162b033cf6
+@branchId = 01a180e1-81eb-7f29-928a-b4cccf6dab92
 
 
 ### Consultar una sede por ID
@@ -87,3 +87,7 @@ Accept: application/json
 {
   "activo": false
 }
+
+### Eliminar sede (borrado físico)
+DELETE {{YorFit.Api_HostAddress}}/api/sedes/{{branchId}}
+Accept: application/json

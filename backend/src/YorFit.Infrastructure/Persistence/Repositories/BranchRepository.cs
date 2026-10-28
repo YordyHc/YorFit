@@ -60,4 +60,10 @@ internal class BranchRepository(ApplicationDbContext context) : IBranchRepositor
     {
         return await context.Branchs.FirstOrDefaultAsync(x => x.Id == id);
     }
+
+    public async Task Eliminar(Branch sede)
+    {
+        context.Branchs.Remove(sede);
+        await context.SaveChangesAsync();
+    }
 }
