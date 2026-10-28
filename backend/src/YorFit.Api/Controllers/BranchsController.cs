@@ -8,6 +8,7 @@ using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
 using YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
 using YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
+using YorFit.Application.UseCases.Branchs.Commands.DeleteBranch;
 using YorFit.Application.Utilities.Mediator;
 
 namespace YorFit.Api.Controllers;
@@ -82,6 +83,13 @@ public class BranchsController(IMediator mediador): ControllerBase
 
         await mediador.Send(new ChangeBranchStatusCommand(id, activo));
 
+        return NoContent();
+    }
+    
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await mediador.Send(new DeleteBranchCommand(id));
         return NoContent();
     }
 }

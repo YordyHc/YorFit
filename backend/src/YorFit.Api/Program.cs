@@ -15,6 +15,8 @@ builder.Services.AgregaInfraestructura(builder.Configuration).AgregarAplicacion(
 
 var app = builder.Build();
 
+app.UseManejadorExcepciones();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

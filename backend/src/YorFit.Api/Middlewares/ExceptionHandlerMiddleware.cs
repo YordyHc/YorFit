@@ -43,6 +43,10 @@ public class ExceptionHandlerMiddleware
             resultado = JsonSerializer.Serialize(exceptionReglaDeNegocio.Message);
             break;
             case NotFoundException: httpStatusCode = HttpStatusCode.NotFound;
+            resultado = JsonSerializer.Serialize(new
+            {
+                mensaje = "No se encontró el elemento solicitado."
+            });
             break;
         }
 
