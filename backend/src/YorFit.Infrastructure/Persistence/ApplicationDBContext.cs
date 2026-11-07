@@ -24,4 +24,6 @@ internal class ApplicationDbContext : DbContext
     }
 
     public DbSet<Branch> Branchs { get; set; }
+
+    public DbSet<Role> Roles { get; set; }
 }
