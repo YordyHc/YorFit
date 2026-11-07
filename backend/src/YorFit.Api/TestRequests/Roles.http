@@ -1,0 +1,72 @@
+@YorFit.Api_HostAddress = http://localhost:5215
+@roleId = 01a1b6a2-d6ec-7361-9bef-8f7a8a2c0f49
+
+### Consultar una rol por ID
+GET {{YorFit.Api_HostAddress}}/api/roles/{{roleId}}
+Accept: application/json
+
+### Listar todas las roles
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado
+Accept: application/json
+
+### Buscar por nombre parcial
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado?nombre=Admin
+Accept: application/json
+
+### Buscar roles activas
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado?estado=true
+Accept: application/json
+
+### Buscar roles inactivas
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado?estado=false
+Accept: application/json
+
+### Combinar nombre, código y estado
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado?nombre=Admin&estado=true
+Accept: application/json
+
+### Búsqueda sin coincidencias: debe devolver una lista vacía
+GET {{YorFit.Api_HostAddress}}/api/roles/filtrado?nombre=NoExiste
+Accept: application/json
+
+### Crear rol
+POST {{YorFit.Api_HostAddress}}/api/roles
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Admin",
+  "descripcion": "Controla todas las funciones del sistema"
+}
+
+### Actualizar datos de la rol
+PUT {{YorFit.Api_HostAddress}}/api/roles/{{roleId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Administrador",
+  "descripcion": "Controla todas las funciones del sistema Yorfit"
+}
+
+### Activar rol
+PATCH {{YorFit.Api_HostAddress}}/api/roles/{{roleId}}/estado
+Content-Type: application/json
+Accept: application/json
+
+{
+  "estado": true
+}
+
+### Desactivar rol
+PATCH {{YorFit.Api_HostAddress}}/api/roles/{{roleId}}/estado
+Content-Type: application/json
+Accept: application/json
+
+{
+  "estado": false
+}
+
+### Eliminar rol (borrado físico)
+DELETE {{YorFit.Api_HostAddress}}/api/roles/{{roleId}}
+Accept: application/json
