@@ -2,13 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using YorFit.Application.Utilities.Mediator;
+//sede
 using YorFit.Application.UseCases.Branchs.Commands.UpdateBranch;
 using YorFit.Application.UseCases.Branchs.Commands.ChangeBranchStatus;
 using YorFit.Application.UseCases.Branchs.Commands.CreateBranch;
-using YorFit.Application.Utilities.Mediator;
 using YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
 using YorFit.Application.UseCases.Branchs.Queries.GetBranchById;
 using YorFit.Application.UseCases.Branchs.Commands.DeleteBranch;
+//rol
+using YorFit.Application.UseCases.Roles.Commands.CreateRole;
+using YorFit.Application.UseCases.Roles.Commands.UpdateRole;
+using YorFit.Application.UseCases.Roles.Commands.ChangeRoleStatus;
+using YorFit.Application.UseCases.Roles.Commands.DeleteRole;
+using YorFit.Application.UseCases.Roles.Queries.GetRoleById;
+using YorFit.Application.UseCases.Roles.Queries.FilterRoles;
 
 namespace YorFit.Application;
 
@@ -26,10 +34,23 @@ public static class DependencyInjection
         
         services.AddScoped<IRequestHandler<QueryGetBranchById, BranchDetailDTO>, UseCaseGetBranchById>();
 
-        services.AddScoped<IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>, FilterProductsUseCase>();
+        services.AddScoped<IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>, FilterBranchsUseCase>();
 
         services.AddScoped<IRequestHandler<DeleteBranchCommand>, DeleteBranchUseCase>();
 
+        //rol
+
+        services.AddScoped<IRequestHandler<CreateRoleCommand, Guid>, CreateRoleUseCase>();
+
+        services.AddScoped<IRequestHandler<UpdateRoleCommand>, UpdateRoleUseCase>();
+
+        services.AddScoped<IRequestHandler<ChangeRoleStatusCommand>, ChangeRoleStatusUseCase>();
+        
+        services.AddScoped<IRequestHandler<QueryGetRoleById, RoleDetailDTO>, UseCaseGetRoleById>();
+
+        services.AddScoped<IRequestHandler<FilterRolesQuery, List<FilteredRoleDTO>>, FilterRolesUseCase>();
+
+        services.AddScoped<IRequestHandler<DeleteRoleCommand>, DeleteRoleUseCase>();
         return services;
     }
 }

@@ -7,7 +7,7 @@ using YorFit.Domain.Entities;
 
 namespace YorFit.Application.UseCases.Branchs.Queries.FilterBranchs;
 
-public class FilterProductsUseCase(IBranchRepository repositorio) : IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>
+public class FilterBranchsUseCase(IBranchRepository repositorio) : IRequestHandler<FilterBranchsQuery, List<FilteredBranchDTO>>
 {
     public async Task<List<FilteredBranchDTO>> Handle(FilterBranchsQuery request)
     {
