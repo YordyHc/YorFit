@@ -11,6 +11,6 @@ public interface IRoleRepository
     Task<bool> Existe(string nombre);
     Task<Role?> ObtenerPorId(Guid id);
     Task Actualizar(Role rol);
+    Task Eliminar(Role rol);
     // Task<List<Role>> ObtenerFiltrado(string? nombre, string? codigo, bool? activo);
-    // Task Eliminar(Role rol);
 }
