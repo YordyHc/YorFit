@@ -101,6 +101,169 @@ namespace YorFit.Infrastructure.Persistence.Migrations
                     b.ToTable("Branchs");
                 });
 
+            modelBuilder.Entity("YorFit.Domain.Entities.Employee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Cargo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("FechaIngreso")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("IdPersona")
+                        .HasColumnType("uuid");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Sueldo", "YorFit.Domain.Entities.Employee.Sueldo#Money", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<decimal>("Amount")
+                                .HasPrecision(18, 4)
+                                .HasColumnType("numeric(18,4)")
+                                .HasColumnName("SalaryAmount");
+
+                            b1.Property<string>("Currency")
+                                .IsRequired()
+                                .HasMaxLength(3)
+                                .HasColumnType("character varying(3)")
+                                .HasColumnName("SalaryCurrency");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdPersona");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Member", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CodigoSocio")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("FechaIngreso")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("IdPersona")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CodigoSocio")
+                        .IsUnique();
+
+                    b.HasIndex("IdPersona");
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Apellidos")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Nombres")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Direccion", "YorFit.Domain.Entities.Person.Direccion#Address", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("Distrito")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("D_Distrito");
+
+                            b1.Property<string>("LineaDireccion1")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("D_Linea1");
+
+                            b1.Property<string>("LineaDireccion2")
+                                .HasColumnType("text")
+                                .HasColumnName("D_Linea2");
+
+                            b1.Property<string>("Pais")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("D_Pais");
+
+                            b1.Property<string>("Provincia")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("D_Provincia");
+
+                            b1.Property<string>("Referencia")
+                                .HasColumnType("text")
+                                .HasColumnName("D_Referencia");
+                        });
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "DocumentoIdentidad", "YorFit.Domain.Entities.Person.DocumentoIdentidad#IdentityDocument", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("Numero")
+                                .IsRequired()
+                                .HasMaxLength(30)
+                                .HasColumnType("character varying(30)")
+                                .HasColumnName("DI_Numero");
+
+                            b1.Property<int>("Tipo")
+                                .HasColumnType("integer")
+                                .HasColumnName("DI_Tipo");
+                        });
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Telefono", "YorFit.Domain.Entities.Person.Telefono#Phone", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("CodigoPais")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("T_CodigoPais");
+
+                            b1.Property<string>("NumeroNacional")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("T_NumeroNacional");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Persons");
+                });
+
             modelBuilder.Entity("YorFit.Domain.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -126,6 +289,130 @@ namespace YorFit.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Trainer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IdEmpleado")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdEmpleado");
+
+                    b.ToTable("Trainers");
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("character varying(254)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IdPersona")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdRol")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IdSede")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("RequiereCambioPassword")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdPersona");
+
+                    b.HasIndex("IdRol");
+
+                    b.HasIndex("IdSede");
+
+                    b.HasIndex("NombreUsuario")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Employee", b =>
+                {
+                    b.HasOne("YorFit.Domain.Entities.Person", null)
+                        .WithMany()
+                        .HasForeignKey("IdPersona")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Member", b =>
+                {
+                    b.HasOne("YorFit.Domain.Entities.Person", null)
+                        .WithMany()
+                        .HasForeignKey("IdPersona")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.Trainer", b =>
+                {
+                    b.HasOne("YorFit.Domain.Entities.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("IdEmpleado")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("YorFit.Domain.Entities.User", b =>
+                {
+                    b.HasOne("YorFit.Domain.Entities.Person", null)
+                        .WithMany()
+                        .HasForeignKey("IdPersona")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("YorFit.Domain.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("IdRol")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("YorFit.Domain.Entities.Branch", null)
+                        .WithMany()
+                        .HasForeignKey("IdSede")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
