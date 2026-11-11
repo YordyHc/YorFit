@@ -17,6 +17,25 @@ internal class TrainerRepository(ApplicationDbContext context) : ITrainerReposit
         return await context.Trainers.FirstOrDefaultAsync(trainer => trainer.Id == id);
     }
 
+    public async Task<List<Trainer>> ObtenerFiltrado(string? especialidad, Guid? idEmpleado, bool? estado)
+    {
+        var query = context.Trainers.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(especialidad))
+        {
+            var filtro = especialidad.Trim();
+            query = query.Where(trainer => trainer.Especialidad.Contains(filtro));
+        }
+
+        if (idEmpleado.HasValue)
+            query = query.Where(trainer => trainer.IdEmpleado == idEmpleado.Value);
+
+        if (estado.HasValue)
+            query = query.Where(trainer => trainer.Estado == estado.Value);
+
+        return await query.ToListAsync();
+    }
+
     public async Task Actualizar(Trainer trainer)
     {
         context.Update(trainer);

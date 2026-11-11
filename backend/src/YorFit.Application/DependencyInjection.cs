@@ -33,6 +33,16 @@ using YorFit.Application.UseCases.Members.Commands.DeleteMember;
 using YorFit.Application.UseCases.Trainers.Commands.CreateTrainer;
 using YorFit.Application.UseCases.Trainers.Commands.UpdateTrainer;
 using YorFit.Application.UseCases.Trainers.Commands.DeleteTrainer;
+using YorFit.Application.UseCases.Persons.Queries.FilterPersons;
+using YorFit.Application.UseCases.Persons.Queries.GetPersonById;
+using YorFit.Application.UseCases.Users.Queries.FilterUsers;
+using YorFit.Application.UseCases.Users.Queries.GetUserById;
+using YorFit.Application.UseCases.Employees.Queries.FilterEmployees;
+using YorFit.Application.UseCases.Employees.Queries.GetEmployeeById;
+using YorFit.Application.UseCases.Members.Queries.FilterMembers;
+using YorFit.Application.UseCases.Members.Queries.GetMemberById;
+using YorFit.Application.UseCases.Trainers.Queries.FilterTrainers;
+using YorFit.Application.UseCases.Trainers.Queries.GetTrainerById;
 
 namespace YorFit.Application;
 
@@ -93,6 +103,22 @@ public static class DependencyInjection
         services.AddScoped<IRequestHandler<CreateTrainerCommand, Guid>, CreateTrainerUseCase>();
         services.AddScoped<IRequestHandler<UpdateTrainerCommand>, UpdateTrainerUseCase>();
         services.AddScoped<IRequestHandler<DeleteTrainerCommand>, DeleteTrainerUseCase>();
+
+        // Consultas
+        services.AddScoped<IRequestHandler<FilterPersonsQuery, List<FilteredPersonDTO>>, FilterPersonsUseCase>();
+        services.AddScoped<IRequestHandler<QueryGetPersonById, PersonDetailDTO>, UseCaseGetPersonById>();
+
+        services.AddScoped<IRequestHandler<FilterUsersQuery, List<FilteredUserDTO>>, FilterUsersUseCase>();
+        services.AddScoped<IRequestHandler<QueryGetUserById, UserDetailDTO>, UseCaseGetUserById>();
+
+        services.AddScoped<IRequestHandler<FilterEmployeesQuery, List<FilteredEmployeeDTO>>, FilterEmployeesUseCase>();
+        services.AddScoped<IRequestHandler<QueryGetEmployeeById, EmployeeDetailDTO>, UseCaseGetEmployeeById>();
+
+        services.AddScoped<IRequestHandler<FilterMembersQuery, List<FilteredMemberDTO>>, FilterMembersUseCase>();
+        services.AddScoped<IRequestHandler<QueryGetMemberById, MemberDetailDTO>, UseCaseGetMemberById>();
+
+        services.AddScoped<IRequestHandler<FilterTrainersQuery, List<FilteredTrainerDTO>>, FilterTrainersUseCase>();
+        services.AddScoped<IRequestHandler<QueryGetTrainerById, TrainerDetailDTO>, UseCaseGetTrainerById>();
 
         return services;
     }
