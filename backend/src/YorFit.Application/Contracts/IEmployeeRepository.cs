@@ -6,6 +6,7 @@ public interface IEmployeeRepository
 {
     Task Agregar(Employee employee);
     Task<Employee?> ObtenerPorId(Guid id);
+    Task<List<Employee>> ObtenerFiltrado(string? cargo, Guid? idPersona, bool? estado);
     Task Actualizar(Employee employee);
     Task Eliminar(Employee employee);
 }
