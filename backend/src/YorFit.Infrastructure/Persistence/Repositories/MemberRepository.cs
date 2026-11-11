@@ -24,6 +24,25 @@ internal class MemberRepository(ApplicationDbContext context) : IMemberRepositor
         return await context.Members.FirstOrDefaultAsync(member => member.Id == id);
     }
 
+    public async Task<List<Member>> ObtenerFiltrado(string? codigoSocio, Guid? idPersona, bool? estado)
+    {
+        var query = context.Members.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(codigoSocio))
+        {
+            var filtro = codigoSocio.Trim();
+            query = query.Where(member => member.CodigoSocio.Contains(filtro));
+        }
+
+        if (idPersona.HasValue)
+            query = query.Where(member => member.IdPersona == idPersona.Value);
+
+        if (estado.HasValue)
+            query = query.Where(member => member.Estado == estado.Value);
+
+        return await query.ToListAsync();
+    }
+
     public async Task Actualizar(Member member)
     {
         context.Update(member);
